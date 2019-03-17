@@ -17,8 +17,10 @@
               ex ea commodo consequat. </p>
 
             <mat-radio-group fxLayout="column" fxLayoutGap="25px" class="form-entry">
-              <mat-radio-button class="example-margin" value="after"> I want to report my own information</mat-radio-button>
-              <mat-radio-button class="example-margin" value="before">I want to report information on someone else</mat-radio-button>
+              <mat-radio-button class="example-margin" value="after"> I want to report my own information
+              </mat-radio-button>
+              <mat-radio-button class="example-margin" value="before">I want to report information on someone else
+              </mat-radio-button>
             </mat-radio-group>
 
             <div fxLayout="row" fxLayoutGap="15px" class="form-entry">
@@ -26,6 +28,7 @@
                 <mat-form-field appearance="outline">
                   <mat-label>First name</mat-label>
                   <input matInput formControlName="firstName" required>
+                  <mat-error *ngIf="identifyingInfo.controls['firstName'].hasError('required')">First name is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -35,7 +38,10 @@
 
                 <mat-form-field appearance="outline">
                   <mat-label>Hair color</mat-label>
-                  <input matInput formControlName="hairColor">
+                  <mat-select matInput formControlName="hairColor">
+                    <mat-option *ngFor="let hairColor of hairColorOptions.values(); let i = index" [value]="i">
+                      {{ hairColor }}</mat-option>
+                  </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -53,16 +59,22 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Last name</mat-label>
                   <input matInput formControlName="lastName" required>
+                  <mat-error *ngIf="identifyingInfo.controls['lastName'].hasError('required')">Last name is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                   <mat-label>Sex</mat-label>
-                  <input matInput formControlName="sex">
+                  <mat-select matInput formControlName="sex">
+                    <mat-option *ngFor="let sex of sexOptions.values(); let i = index" [value]="i">{{ sex }}</mat-option>
+                  </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                   <mat-label>Eye Color</mat-label>
-                  <input matInput formControlName="eyeColor">
+                  <mat-select matInput formControlName="eyeColor">
+                    <mat-option *ngFor="let eyeColor of eyeColorOptions.values(); let i = index" [value]="i">
+                      {{ eyeColor }}</mat-option>
+                  </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -80,15 +92,20 @@
                 <div style="padding: 40px;"></div>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Ethnicity</mat-label>
-                  <input matInput formControlName="ethnicity">
+                  <mat-label>Race</mat-label>
+                  <mat-select matInput formControlName="race">
+                    <mat-option *ngFor="let race of raceOptions.values(); let i = index" [value]="i">{{ race }}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
 
                 <div style="padding: 40px;"></div>
 
                 <mat-form-field appearance="outline">
                   <mat-label>State</mat-label>
-                  <input matInput formControlName="addressState">
+                  <mat-select matInput formControlName="addressState">
+                    <mat-option *ngFor="let state of stateOptions.values(); let i = index" [value]="i">{{ state }}</mat-option>
+                  </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -101,12 +118,13 @@
             <div fxLayout="row">
               <mat-form-field appearance="outline" class="form-textarea">
                 <mat-label>Additional Information</mat-label>
-                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="additonalInfo"></textarea>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5"
+                  formControlName="additonalInfo"></textarea>
               </mat-form-field>
             </div>
 
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext [disabled]="!identifyingInfo.valid">Next</button>
             </div>
           </form>
         </mat-step>
@@ -116,12 +134,12 @@
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. </p>
+              ex ea commodo consequat.</p>
 
-              <mat-form-field appearance="outline" class="form-textarea">
-                  <mat-label>Last known location</mat-label>
-                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="secondCtrl"></textarea>
-                </mat-form-field>
+            <mat-form-field appearance="outline" class="form-textarea">
+              <mat-label>Last known location</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="secondCtrl"></textarea>
+            </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>

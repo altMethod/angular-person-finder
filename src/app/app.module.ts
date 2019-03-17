@@ -15,7 +15,8 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatStepperModule,
-  MatRadioModule } from '@angular/material';
+  MatRadioModule, 
+  MatSelectModule} from '@angular/material';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -57,7 +58,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
